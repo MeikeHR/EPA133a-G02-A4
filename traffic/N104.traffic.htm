@@ -1,0 +1,1367 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<html>
+  <head>
+    <title>
+      ::RMMS::
+    </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <link href="bmms.css" rel="stylesheet" type="text/css"/>
+    <script src="code.js" type="text/javascript">
+    </script>
+    <script language="JavaScript">
+//<![CDATA[
+
+
+function ShowPop(theURL,winName,myWidth,myHeight) { //v2.0
+lt=(screen.width-myWidth)/2;
+tp=(screen.height-myHeight)/2;
+fea="width="+myWidth+",height="+myHeight+",scrollbars=yes,resizable=yes,left="+lt+",top="+tp+"";
+//alert(fea);
+  window.open(theURL,winName,fea);
+}
+/*
+function filterLinks(PAGE){
+var pDF='L1';
+var pAD='L2';
+var pADM='L3';
+var lColor='#D8D8D8';
+try{
+if(PAGE==pDF){
+document.getElementById(pDF).style.color=lColor;
+document.getElementById(pDF).href='#';
+}else if(PAGE==pAD){
+document.getElementById(pAD).style.color=lColor;
+document.getElementById(pAD).href='#';
+}else if(PAGE==pADM){
+document.getElementById(pADM).style.color=lColor;
+document.getElementById(pADM).href='#';
+}
+}catch(e){
+return false;
+}
+}
+*/
+function exportToExcel()
+{
+var oExcel = new ActiveXObject("Excel.Application");
+var oBook = oExcel.Workbooks.Add;
+var oSheet = oBook.Worksheets(1);
+var y=0;
+var x=0;
+for (y=0;y<detailsTable.rows.length;y++)
+// detailsTable is the table where the content to be exported is
+{
+	for (x=0;x<detailsTable.rows(y).cells.length;x++)
+	{
+	if (detailsTable.rows(y).cells(x).id!="ex"){
+oSheet.Cells(y+1,x+1) =detailsTable.rows(y).cells(x).innerText;
+
+
+}
+	}
+}
+
+
+
+oExcel.Visible = true;
+oExcel.UserControl = true;
+}
+function checkExcel(){
+
+try{
+var oExcel = new ActiveXObject("Excel.Application");
+return true;
+}catch(e){
+return false;
+}
+} 
+function exBodyLoad(){
+if (checkExcel()){
+}else{
+EXCEL.style.display="none";
+}
+}
+function checkForm1(CTRL){
+	var VAL=CTRL.value.trim();
+	try{
+	if(VAL==""){
+		alert("Road name is empty");
+		CTRL.focus();
+		return false;
+	}else{
+		return true;
+	}
+	}catch(e){
+		alert(CTRL.value)
+	}
+}
+String.prototype.trim = function()
+{
+   return this.replace(/(^\s*)|(\s*$)/g, "");
+}
+function blink() {
+            if (x % 2) {
+                col = "rgb(255,0,0)";
+            } else {
+                col = "rgb(255,255,255)";
+            }
+
+            aF.style.color = col;
+			//aF1.style.color = col;
+			//aF2.style.color = col;
+			//aF3.style.color = col;
+            x++;
+
+            if (x > 2)
+                { x = 1 }; 
+            setTimeout("blink()", 2000);
+        }
+
+
+//]]>
+    </script>
+    <style type="text/css">
+      
+.blink {
+font-size: 12px;
+color: red;
+display: inline;
+}
+
+    </style>
+  </head>
+  <body topmargin="5" bottommargin="5" leftmargin="5" rightmargin="5">
+    <table border="0" width="100%" cellspacing="0" cellpadding="0" bgcolor="#ffffff" style="border:1px solid #4574A7;" align="center">
+      <tbody>
+        <tr>
+          <td width="472" valign="bottom">
+            &nbsp;
+            <img src="image/RMMS_BANNER.gif" width="468" height="60" border="0"/>
+          </td>
+          <td height="64" align="right">
+            <img src="image/BRIDGE.gif"/>
+            &nbsp;
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" class="DONTPrint">
+      <tbody>
+        <tr>
+          <td colspan="4" height="5">
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" height="5" style="color:red; font-size:14px; font-weight:bold;" align="center">
+            <span id="aF">
+              The RMMS Database upgradation is going on.
+              <br/>
+              <font size="4px">
+                ***The information being shown here is under review.***
+              </font>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td width="3%">
+             &nbsp;
+          </td>
+          <td colspan="3" align="right">
+            <a href="searchbyoffice_2.asp" align="absmiddle" id="L2">
+              <img src="image/SearchSS.gif" width="22" height="22" align="absmiddle" border="0"/>
+              &nbsp;Search by location
+            </a>
+            
+	  &nbsp; &nbsp;
+		
+            <a href="default.asp" align="absmiddle" id="L1">
+              <img src="image/Home.gif" width="23" height="24" align="absmiddle" border="0"/>
+              &nbsp;Home
+            </a>
+            
+	  &nbsp;
+	
+          </td>
+        </tr>
+        <form action="searchresult_2.asp" method="get" onsubmit="checkForm1(this.RoadName);" name="hForm">
+        </form>
+        <tr bgcolor="#F7F7F7">
+          <td height="25" colspan="2" class="tdHead">
+            &nbsp;&nbsp;&nbsp;Road link &amp; Traffic
+          </td>
+          <td width="43%" align="right" class="tdHead">
+            <span class="text5">
+              Search by Road name
+            </span>
+            &nbsp;
+       
+            <input type="text" name="RoadName" maxlength="50" style="width:125px;border: 1px solid #000066;"/>
+            
+       &nbsp;
+      
+            <input type="submit" name="SEARCH" style="cursor:hand" value=" Go " class="button"/>
+          </td>
+          <td width="3%" align="right" class="tdHead">
+            &nbsp;
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+&nbsp;&nbsp;
+
+
+    <p>
+    </p>
+    <div style="overflow:scroll; max-width:100%; max-height:430px;">
+      <table style="width:2500px;" align="center" cellpadding="1" cellspacing="1">
+        <tbody>
+          <tr>
+            <td valign="top">
+              &nbsp;
+            </td>
+            <td valign="top">
+              <table border="0" cellpadding="0" cellspacing="0" class="clsTbl">
+                <tbody>
+                  <tr>
+                    <td>
+                      &nbsp;
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <table style="width:2500px;" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                          <tr>
+                            <td height="20" colspan="26" class="dingbat">
+                              List of links of N104  (
+                              <a href="link.htm" target="_blank" class="a">
+                                what is a link
+                              </a>
+                              )
+                            </td>
+                          </tr>
+                          <tr>
+                            <td width="3%" height="20" class="tdHead">
+                              <a href="?COL=Lk.LinkNo&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                Link no
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                            </td>
+                            <td width="15%" class="tdHead" style="border-width:1px; border-left:1px dashed #000000; ">
+                              &nbsp;
+                              <a href="?COL=Lk.LinkName&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                Name
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                            </td>
+                            <td colspan="3" align="center" bgcolor="#F7FCF5" class="tdHead" style="border-width:1px; border-left:1px dashed #000000; ">
+                              Start location
+                            </td>
+                            <td colspan="3" align="center" bgcolor="#F4F5FB" class="tdHead" style="border-width:1px; border-left:1px dashed #000000; ">
+                              End location
+                            </td>
+                            <td width="3%" align="right" class="tdHead" style="border-width:1px; border-left:1px dashed #000000; ">
+                              <a href="?COL=Lengths&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                Length
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                              &nbsp; 
+                            </td>
+                            <td colspan="13" align="center" bgcolor="#F7FCF5" class="tdHead" style="border-width:1px; border-left:1px dashed #000000; ">
+                              Traffic Data
+                            </td>
+                            <td colspan="3" align="center" bgcolor="#F7FCF5" class="tdHead" style="border-width:1px; border-left:1px dashed #000000; ">
+                              Total
+                            </td>
+                            <td width="7%" align="right" class="tdHead" style="border-width:1px; border-left:1px dashed #000000; ">
+                              <a href="?COL=SumOfAADT&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                Traffic
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                              &nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td height="20" class="tdHead">
+                              &nbsp;
+                            </td>
+                            <td height="20" class="tdHead">
+                              &nbsp;
+                            </td>
+                            <td width="2%" bgcolor="#F0F0F0" class="tdHead">
+                              &nbsp;
+                              <a href="?COL=StartLRPNo&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                LRP
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                            </td>
+                            <td width="3%" bgcolor="#F0F0F0" class="tdHead">
+                              &nbsp;
+                              <a href="?COL=Lk.StartLRPOffset&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                Offset
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                            </td>
+                            <td width="4%" align="right" bgcolor="#F0F0F0" class="tdHead">
+                              <a href="?COL=Lk.StartChainage&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                <span style="color: #A8A8A8">
+                                  Chainage
+                                </span>
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                              &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td width="2%" bgcolor="#F0F0F0" class="tdHead">
+                              &nbsp;
+                              <a href="?COL=StartLRPNo&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                LRP
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                            </td>
+                            <td width="3%" bgcolor="#F0F0F0" class="tdHead">
+                              &nbsp;
+                              <a href="?COL=Lk.StartLRPOffset&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                Offset
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                            </td>
+                            <td width="4%" align="right" bgcolor="#F0F0F0" class="tdHead">
+                              <a href="?COL=Lk.StartChainage&amp;RoadID=1523&amp;RoadNo=N104&amp;ORDERBY=2" class="navOrder">
+                                <span style="color: #A8A8A8">
+                                  Chainage
+                                </span>
+                              </a>
+                              &nbsp;
+                              <img src="image/ASC.gif" border="0"/>
+                              &nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdHead" align="right">
+                              (Km)&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Heavy Truck&nbsp;
+                            </td>
+                            <td width="5%" align="right" class="tdHead">
+                              Medium Truck&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Small Truck&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Large Bus&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Medium Bus&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Micro Bus&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Utility&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Car&nbsp;
+                            </td>
+                            <td width="4%" align="right" class="tdHead">
+                              Auto Rickshaw&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Motor Cycle&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Bi-Cycle&nbsp;
+                            </td>
+                            <td width="4%" align="right" class="tdHead">
+                              Cycle Rickshaw&nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              Cart &nbsp;
+                            </td>
+                            <td width="4%" align="right" class="tdHead">
+                              Motorized &nbsp;
+                            </td>
+                            <td width="4%" align="right" class="tdHead">
+                              Non Motorized &nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                               Total AADT &nbsp;
+                            </td>
+                            <td width="3%" align="right" class="tdHead">
+                              (AADT)&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5117" class="a">
+                                N104-1 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp; Feni (Trank Road)-Feni (Mohipal Chourasta) Int. with N1
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRPS       
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;0
+                            </td>
+                            <td align="right" class="tdRow">
+                              0&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRPS       
+                            </td>
+                            <td class="tdRow" align="right">
+                              1878&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1.878&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1.878&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              90.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              675.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              406.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              217.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              379.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              517.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              61.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              174.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4683.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              597.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              258.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1328.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              0.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7799.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1586.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9385.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9385.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5118" class="a">
+                                N104-2 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp; Feni (Int. with N1)-Feni (Temohoni)Int.with Z1444
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRPS       
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;1878
+                            </td>
+                            <td align="right" class="tdRow">
+                              1.878&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP004     
+                            </td>
+                            <td class="tdRow" align="right">
+                              270&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4.35&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              2.472&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              90.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              675.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              406.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              217.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              379.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              517.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              61.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              174.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4683.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              597.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              258.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1328.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              0.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7799.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1586.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9385.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9385.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5119" class="a">
+                                N104-3 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp; Feni (Temohoni)Int.with Z1444-Selonia (Int.with Z1443)
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP004     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;270
+                            </td>
+                            <td align="right" class="tdRow">
+                              4.35&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP008     
+                            </td>
+                            <td class="tdRow" align="right">
+                              485&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8.315&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              3.965&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              90.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              675.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              406.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              217.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              379.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              517.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              61.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              174.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4683.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              597.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              258.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1328.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              0.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7799.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1586.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9385.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9385.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5120" class="a">
+                                N104-4 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp; Selonia(Int.with Z1443)-Daganbhuiyan (Int.with Z1441)
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP008     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;485
+                            </td>
+                            <td align="right" class="tdRow">
+                              8.315&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP014     
+                            </td>
+                            <td class="tdRow" align="right">
+                              994&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              14.809&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              6.494&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              90.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              675.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              406.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              217.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              379.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              517.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              61.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              174.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4683.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              597.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              258.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1328.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              0.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7799.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1586.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9385.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9385.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5121" class="a">
+                                N104-5 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;Daganbhuiyan (Int.with Z1441)-Tulatali (Int.with Z1030)
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP014     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;994
+                            </td>
+                            <td align="right" class="tdRow">
+                              14.809&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP017     
+                            </td>
+                            <td class="tdRow" align="right">
+                              230&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              17.13&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              2.321&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              67.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              820.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              426.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              322.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              205.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              281.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              44.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              90.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4147.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              768.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              332.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1228.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7170.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1568.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8738.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8738.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5122" class="a">
+                                N104-6 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;Tulatali (Int.with Z1030)- Kallandi (Int.with Z1421)
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP017     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;230
+                            </td>
+                            <td align="right" class="tdRow">
+                              17.13&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP023     
+                            </td>
+                            <td class="tdRow" align="right">
+                              923&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              23.823&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              6.693&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              67.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              820.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              426.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              322.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              205.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              281.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              44.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              90.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4147.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              768.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              332.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1228.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7170.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1568.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8738.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8738.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5123" class="a">
+                                N104-7 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp; Kallandi (Int.with Z1421)-  Chowmohoni (Int.with Z1420)
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP023     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;923
+                            </td>
+                            <td align="right" class="tdRow">
+                              23.823&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP032     
+                            </td>
+                            <td class="tdRow" align="right">
+                              2120&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              34.12&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              10.297&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              67.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              820.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              426.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              322.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              205.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              281.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              44.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              90.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4147.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              768.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              332.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1228.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7170.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1568.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8738.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8738.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5124" class="a">
+                                N104-8 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;Chowmohoni (Int.with Z1420)-Chowmohoni (Int.with R142 &amp; R140)
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP032     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;2120
+                            </td>
+                            <td align="right" class="tdRow">
+                              34.12&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP032     
+                            </td>
+                            <td class="tdRow" align="right">
+                              4033&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              36.033&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1.913&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              67.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              820.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              426.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              322.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              205.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              281.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              44.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              90.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4147.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              768.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              332.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1228.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7170.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1568.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8738.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8738.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5126" class="a">
+                                N104-9 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;Chowmohoni (Int.with R142 &amp; R140)-Maijdee Bazar(Int.with R143)
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP032     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;4033
+                            </td>
+                            <td align="right" class="tdRow">
+                              36.033&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP042     
+                            </td>
+                            <td class="tdRow" align="right">
+                              1230&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              43.03&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              6.997&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              46.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1263.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              625.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              975.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              565.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              755.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              147.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              357.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              3066.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1066.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              270.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              447.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              0.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8865.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              717.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9582.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9582.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5127" class="a">
+                                N104-10 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;Maijdee Bazar(Int.with R143)-Maijdee(Int.with Z1429)
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP042     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;1230
+                            </td>
+                            <td align="right" class="tdRow">
+                              43.03&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP044     
+                            </td>
+                            <td class="tdRow" align="right">
+                              1380&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              45.2&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              2.170&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              46.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1263.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              625.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              975.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              565.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              755.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              147.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              357.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              3066.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1066.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              270.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              447.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              0.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8865.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              717.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9582.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              9582.0&nbsp;
+                            </td>
+                          </tr>
+                          <tr>
+                            <td class="tdRow">
+                              &nbsp;
+                              <a href="linkdetails.asp?ID=5128" class="a">
+                                N104-11 
+                              </a>
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;Maijdee(Int.with Z1429)-Sonapur
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRP044     
+                            </td>
+                            <td height="20" class="tdRow">
+                              &nbsp;1380
+                            </td>
+                            <td align="right" class="tdRow">
+                              45.2&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td class="tdRow">
+                              &nbsp;LRPE       
+                            </td>
+                            <td class="tdRow" align="right">
+                              0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              49.63&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              4.430&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              19.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              675.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              496.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              502.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              496.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              479.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              132.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              393.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              3681.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              1025.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              446.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              542.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              0.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              7898.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              988.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8886.0&nbsp;
+                            </td>
+                            <td align="right" class="tdRow">
+                              8886.0&nbsp;
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td height="20" bgcolor="#F7F7F7">
+                      &nbsp;
+                    </td>
+                  </tr>
+                  <tr>
+                    <td height="20" class="text1">
+                      &nbsp;
+                      <font color="#FF0000">
+                        *
+                      </font>
+                      <span class="text3">
+                        Traffic survey was not done on the link. It was assumed that the traffic will be equivalent to that of another link. Please click on the AADT figure to view the referenced link.
+                      </span>
+                      <br/>
+                      
+      &nbsp;Traffic survey is done once in a year. This information was last updated in the year 
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+            <td width="2%" align="left" valign="top">
+              &nbsp;            
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3" align="left" valign="top" class="text7">
+              &nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <table width="60%" border="0" align="center" class="DONTPrint">
+        <tbody>
+          <tr>
+            <td align="center" bgcolor="#FFFFFF" height="20"/>
+          </tr>
+          <tr>
+            <td align="center" bgcolor="#FFFFFF" style="border-top:1px solid #dedeca;">
+              &nbsp;
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
