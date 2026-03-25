@@ -1,83 +1,96 @@
 from mesa.visualization.ModularVisualization import ModularServer
 from ContinuousSpace.SimpleContinuousModule import SimpleCanvas
 from model import BangladeshModel
-from components import Source, Sink, Bridge, Link, Intersection, Infra
-
-"""
-Run simulation with Visualization 
-Print output at terminal
-"""
+from components import Source, Sink, SourceSink, Bridge, Link, Vehicle
 
 
-# ---------------------------------------------------------------
 def agent_portrayal(agent):
-    """
-    Define the animation methode
-
-    Only circles and rectangles are possible
-    Both can be labelled
-    """
-
-    # define shapes
     portrayal = {
-        "Shape": "circle",  # rect | circle
+        "Shape": "circle",
         "Filled": "true",
         "Color": "Khaki",
-        "r": 2
-        # "w": max(agent.population / 100000 * 4, 4),  # for "Shape": "rect"
-        # "h": max(agent.population / 100000 * 4, 4)
+        "r": 1,
+        "Layer": 0
     }
 
-    if isinstance(agent, Source):
+    if isinstance(agent, Vehicle):
+        portrayal["Color"] = "yellow"
+        portrayal["r"] = 2
+        portrayal["Layer"] = 2
+
+    elif isinstance(agent, SourceSink):
         if agent.vehicle_generated_flag:
             portrayal["Color"] = "green"
+        elif agent.vehicle_removed_toggle:
+            portrayal["Color"] = "Red"
         else:
-            portrayal["Color"] = "red"
-
-    elif isinstance(agent, Sink):
-        if agent.vehicle_removed_toggle:
             portrayal["Color"] = "LightSkyBlue"
-        else:
-            portrayal["Color"] = "LightPink"
-
-    elif isinstance(agent, Link):
-        portrayal["Color"] = "Tan"
-
-    elif isinstance(agent, Intersection):
-        portrayal["Color"] = "DeepPink"
-
-    elif isinstance(agent, Bridge):
-        portrayal["Color"] = "dodgerblue"
-
-    if isinstance(agent, (Source, Sink)):
         portrayal["r"] = 5
-    elif isinstance(agent, Infra):
-        portrayal["r"] = max(agent.vehicle_count * 4, 2)
-
-    # define text labels
-    if isinstance(agent, Infra) and agent.name != "":
+        portrayal["Layer"] = 1
         portrayal["Text"] = agent.name
         portrayal["Text_color"] = "DarkSlateGray"
+        portrayal["font_size"] = 7
+
+    elif isinstance(agent, Source):
+        portrayal["Color"] = "green" if agent.vehicle_generated_flag else "red"
+        portrayal["r"] = 5
+        portrayal["Layer"] = 1
+        portrayal["Text"] = agent.name
+        portrayal["Text_color"] = "DarkSlateGray"
+        portrayal["font_size"] = 7
+
+    elif isinstance(agent, Sink):
+        portrayal["Color"] = "Red"
+        portrayal["r"] = 5
+        portrayal["Layer"] = 1
+        portrayal["Text"] = agent.name
+        portrayal["Text_color"] = "DarkSlateGray"
+        portrayal["font_size"] = 7
+
+    elif isinstance(agent, Bridge):
+        portrayal["Color"] = "red" if agent.is_broken else "mediumpurple"
+        portrayal["r"] = max(agent.vehicle_count * 2, 2)
+
+    else:  # Links
+        portrayal["Color"] = "tan"
+        portrayal["r"] = max(agent.vehicle_count *2, 2)
 
     return portrayal
 
+# Breakdown probabilities per scenario
+scenarios = {
+    "S0": {"A": 0.0,  "B": 0.0,  "C": 0.0,  "D": 0.0},
+    "S1": {"A": 0.0,  "B": 0.0,  "C": 0.0,  "D": 5.0},
+    "S2": {"A": 0.0,  "B": 0.0,  "C": 0.0,  "D": 10.0},
+    "S3": {"A": 0.0,  "B": 0.0,  "C": 5.0,  "D": 10.0},
+    "S4": {"A": 0.0,  "B": 0.0,  "C": 10.0, "D": 20.0},
+    "S5": {"A": 0.0,  "B": 5.0,  "C": 10.0, "D": 20.0},
+    "S6": {"A": 0.0,  "B": 10.0, "C": 20.0, "D": 40.0},
+    "S7": {"A": 5.0,  "B": 10.0, "C": 20.0, "D": 40.0},
+    "S8": {"A": 10.0, "B": 20.0, "C": 40.0, "D": 80.0},
+}
 
-# ---------------------------------------------------------------
-"""
-Launch the animation server 
-Open a browser tab 
-"""
-
-canvas_width = 400
-canvas_height = 400
+canvas_width = 800
+canvas_height = 800
 
 space = SimpleCanvas(agent_portrayal, canvas_width, canvas_height)
 
-server = ModularServer(BangladeshModel,
-                       [space],
-                       "Transport Model Demo",
-                       {"seed": 1234567})
+# Variables
+scenario_to_visualise = "S1"
+seed = 1234567
+roads_to_include = ["N1"] #model can later be expanded by including more roads
+two_directional = False
+bridge_breakdown_probs = scenarios[scenario_to_visualise]
 
-# The default port
+server = ModularServer(
+    BangladeshModel,
+    [space],
+    "Transport Model",
+    {"seed": seed,
+     "roads_to_include": roads_to_include,
+     "two_directional": two_directional,
+     "bridge_breakdown_probs": bridge_breakdown_probs}
+)
+
 server.port = 8521
 server.launch()
