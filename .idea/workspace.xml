@@ -5,6 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.cpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.dbf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.prj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.sbn" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.sbx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.shp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.shp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.shx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" afterDir="false" />
     </list>
@@ -32,12 +40,12 @@
     &quot;assignee&quot;: &quot;MeikeHR&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/MeikeHR/EPA133a-G02-A4.git&quot;,
-    &quot;accountId&quot;: &quot;f2da51b7-ee12-4c7b-a72f-8701fc496028&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MeikeHR/EPA133a-G02-A4.git",
+    "accountId": "69ee33b8-78de-4efa-95b6-637ca9a49e34"
   }
-}</component>
+}]]></component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -50,30 +58,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.model_run.executor": "Run",
-    "Python.model_viz.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.model_run.executor&quot;: &quot;Run&quot;,
+    &quot;Python.model_viz.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jdam/Documents/GitHub/EPA133a-G02-A4/EPA1352-G02-A4/data&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/EPA1352-G02-A4/data" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/EPA1352-G02-A4/data" />
     </key>
@@ -171,6 +183,7 @@
       <workItem from="1774277427576" duration="1489000" />
       <workItem from="1774429266512" duration="1720000" />
       <workItem from="1774432442444" duration="2293000" />
+      <workItem from="1774436679260" duration="110000" />
     </task>
     <servers />
   </component>
