@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="">
+<<<<<<< Updated upstream
       <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.cpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.dbf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.prj" afterDir="false" />
@@ -15,6 +16,11 @@
       <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.shx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_sparsso.shp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Map earthquake.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +64,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< Updated upstream
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
@@ -82,15 +89,44 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/jdam/Documents/GitHub/EPA133a-G02-A4/EPA1352-G02-A4/data",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+>>>>>>> Stashed changes
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/EPA1352-G02-A4/data" />
     </key>
+<<<<<<< Updated upstream
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/EPA1352-G02-A4/data" />
     </key>
   </component>
   <component name="RunManager" selected="Python.model_viz">
+=======
+  </component>
+  <component name="RunManager">
+>>>>>>> Stashed changes
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="EPA133a-G02-A4" />
       <option name="ENV_FILES" value="" />
@@ -182,8 +218,13 @@
       <workItem from="1774276180364" duration="2000" />
       <workItem from="1774277427576" duration="1489000" />
       <workItem from="1774429266512" duration="1720000" />
+<<<<<<< Updated upstream
       <workItem from="1774432442444" duration="2293000" />
       <workItem from="1774436679260" duration="110000" />
+=======
+      <workItem from="1774432442444" duration="784000" />
+      <workItem from="1774434753793" duration="1184000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
