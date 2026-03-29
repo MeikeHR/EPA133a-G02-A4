@@ -6,49 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.cpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.prj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.sbn" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.sbx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.shp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/bgd_nhr_earthquake_barc/bgd_nhr_earthquake_sparsso.shx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin0.cpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin0.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin0.prj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin0.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin0.shx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin1.cpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin1.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin1.prj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin1.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin1.shx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin2.cpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin2.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin2.prj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin2.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin2.shx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin3.cpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin3.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin3.prj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin3.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admin3.shx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admincapitals.cpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admincapitals.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admincapitals.prj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admincapitals.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_admincapitals.shx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminlines.cpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminlines.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminlines.prj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminlines.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminlines.shx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminpoints.cpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminpoints.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminpoints.prj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminpoints.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/shapefile bgd/bgd_adminpoints.shx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="1095" />
+    <option name="cachedIndexableFilesCount" value="1052" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
