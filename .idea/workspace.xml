@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/components.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/components.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_viz.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_viz.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="1019" />
+    <option name="cachedIndexableFilesCount" value="1072" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -54,6 +58,8 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.model_run.executor": "Run",
+    "Python.model_viz A3.executor": "Run",
+    "Python.model_viz A4.executor": "Run",
     "Python.model_viz.executor": "Run",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -64,21 +70,26 @@
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/meikebos/Documents/GitHub/EPA133a-G02-A4/EPA1352-G02-A4/model",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "to.speed.mode.migration.done": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/EPA1352-G02-A4/model" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/EPA1352-G02-A4/data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.model_viz">
+  <component name="RunManager" selected="Python.model_viz A3">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="EPA133a-G02-A4" />
       <option name="ENV_FILES" value="" />
@@ -127,7 +138,30 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="model_viz" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+    <configuration name="model_viz A3" type="PythonConfigurationType" factoryName="Python">
+      <module name="EPA133a-G02-A4" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/EPA1352-G02-A4/model A3" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EPA1352-G02-A4/model A3/model_viz.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="model_viz A4" type="PythonConfigurationType" factoryName="Python">
       <module name="EPA133a-G02-A4" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -155,7 +189,6 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.31033.139" />
         <option value="bundled-python-sdk-2653e85de345-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.31033.139" />
       </set>
     </attachedChunks>
@@ -171,6 +204,7 @@
       <workItem from="1774277427576" duration="1489000" />
       <workItem from="1774429266512" duration="1720000" />
       <workItem from="1774432442444" duration="3219000" />
+      <workItem from="1774793613527" duration="19000" />
     </task>
     <servers />
   </component>

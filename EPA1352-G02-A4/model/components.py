@@ -1,8 +1,9 @@
 from mesa import Agent
 from enum import Enum
+import pandas as pd
 
 
-# ---------------------------------------------------------------
+# Class from which all infra components inherit
 class Infra(Agent):
     def __init__(self, unique_id, model, length=0,
                  name='Unknown', road_name='Unknown'):
@@ -19,64 +20,67 @@ class Infra(Agent):
         return type(self).__name__ + str(self.unique_id)
 
 
-# ---------------------------------------------------------------
+# Bridge class
 class Bridge(Infra):
     def __init__(self, unique_id, model, length=0,
                  name='Unknown', road_name='Unknown', condition='Unknown'):
         super().__init__(unique_id, model, length, name, road_name)
 
-        import pandas as pd
         self.condition = condition if pd.notnull(condition) else 'Unknown'
-        self.is_broken = False
-        self.total_delay_caused = 0
+        self.total_delay_caused = 0 #Delay counter
+        self.breakdown_count = 0 #Breakdown counter
 
+        # Probability is modelled as a chance during the total model run
+        p = self.model.bridge_breakdown_probs.get(self.condition, 0.0) / 100
+        if self.model.random.random() < p:
+            self.is_broken = True
+            self.breakdown_count = 1
+        else:
+            self.is_broken = False
 
     def step(self):
-        # only break once; broken stays broken
-        if not self.is_broken:
-            p = self.model.bridge_breakdown_probs.get(self.condition, 0.0) / 100
-            if self.model.random.random() < p:
-                self.is_broken = True
+        pass
 
 
-# ---------------------------------------------------------------
 class Link(Infra):
     pass
 
 
-# ---------------------------------------------------------------
+#Sink infrastructure class
 class Sink(Infra):
-    vehicle_removed_toggle = False
+    def __init__(self, unique_id, model, length=0,
+                 name='Unknown', road_name='Unknown'):
+        super().__init__(unique_id, model, length, name, road_name)
+        self.vehicle_removed_toggle = False
 
     def remove(self, vehicle):
-        # mark removal time
         vehicle.removed_at_step = self.model.schedule.steps
-
-        # compute travel time (1 tick = 1 minute)
         travel_time = vehicle.removed_at_step - vehicle.generated_at_step
 
-        # store record for CSV export
+        #Trips are stored here
         self.model.trip_records.append({
             "truck_id": vehicle.unique_id,
             "generated_at_step": vehicle.generated_at_step,
             "removed_at_step": vehicle.removed_at_step,
             "travel_time_min": travel_time,
+            "travel_distance_m": vehicle.distance_travelled,
             "sink_id": self.unique_id
         })
 
-        # remove from scheduler
+        self.vehicle_count -= 1
         self.model.schedule.remove(vehicle)
-
-        # toggle/log
         self.vehicle_removed_toggle = not self.vehicle_removed_toggle
-        #print(str(self) + ' REMOVE ' + str(vehicle))
 
 
-# ---------------------------------------------------------------
+#In this part the Source class is created
 class Source(Infra):
     truck_counter = 0
-    generation_frequency = 5
-    vehicle_generated_flag = False
+    generation_frequency = 5 #every 5 steps
+
+    def __init__(self, unique_id, model, length=0,
+                 name='Unknown', road_name='Unknown'):
+        super().__init__(unique_id, model, length, name, road_name)
+        self.vehicle_generated_flag = False
 
     def step(self):
         if self.model.schedule.steps % self.generation_frequency == 0:
@@ -84,13 +88,12 @@ class Source(Infra):
         else:
             self.vehicle_generated_flag = False
 
+    #Generation of trucks, there is also a counter for the amount of trucks created per source
     def generate_truck(self):
-        if self.unique_id not in self.model.sources:  # ✅
+        if self.unique_id not in self.model.sources:
             return
         try:
             agent = Vehicle('Truck' + str(Source.truck_counter), self.model, self)
-
-            # set path before adding
             agent.set_path()
 
             if agent.path_ids is not None and len(agent.path_ids) > 0:
@@ -98,24 +101,22 @@ class Source(Infra):
                 Source.truck_counter += 1
                 self.vehicle_count += 1
                 self.vehicle_generated_flag = True
-                #print(f"{self} GENERATE {agent}")
             else:
-                print(f"Skipping {agent.unique_id}: No valid path found from {self.unique_id}")
+                print(f"Skipping {agent.unique_id}: No valid path found")
 
         except Exception as e:
             print(f"Error generating truck: {e}")
 
 
-# ---------------------------------------------------------------
+# Aggregate class of the source and sink classes
 class SourceSink(Source, Sink):
     pass
 
 
-# ---------------------------------------------------------------
+#Vehicle component
 class Vehicle(Agent):
-    # 48 km/h translated into meter per min
     speed = 48 * 1000 / 60
-    step_time = 1  # 1 tick = 1 minute
+    step_time = 1
 
     class State(Enum):
         DRIVE = 1
@@ -126,23 +127,18 @@ class Vehicle(Agent):
         super().__init__(unique_id, model)
         self.generated_by = generated_by
         self.generated_at_step = model.schedule.steps
-
         self.location = generated_by
         self.location_offset = location_offset
         self.pos = generated_by.pos
-
         self.path_ids = path_ids
         self.state = Vehicle.State.DRIVE
         self.location_index = 0
-        self.waiting_time = 0
+        self.waiting_time = 0 #Tracks waiting time
         self.waited_at = None
         self.removed_at_step = None
+        self.distance_travelled = 0.0 #Distance travelled KPI
 
-    def __str__(self):
-        return "Vehicle" + str(self.unique_id) + \
-               " +" + str(self.generated_at_step) + " -" + str(self.removed_at_step) + \
-               " " + str(self.state) + '(' + str(self.waiting_time) + ') ' + \
-               str(self.location) + '(' + str(self.location.vehicle_count) + ') ' + str(self.location_offset)
+        self.location.vehicle_count += 1
 
     def set_path(self):
         self.path_ids = self.model.get_random_route(self.generated_by.unique_id)
@@ -157,52 +153,40 @@ class Vehicle(Agent):
         if self.state == Vehicle.State.DRIVE:
             self.drive()
 
-        #print(self)
-
     def drive(self):
         distance = Vehicle.speed * Vehicle.step_time
-        distance_rest = self.location_offset + distance - self.location.length
+        distance_rest = self.location_offset + distance - self.location.length #Calculate remaining distance
 
-        if distance_rest > 0:
+        if distance_rest > 0: #only move if there is remaining distance left
+            self.distance_travelled += (self.location.length - self.location_offset)
             self.drive_to_next(distance_rest)
         else:
             self.location_offset += distance
+            self.distance_travelled += distance
 
     def drive_to_next(self, distance):
-        """
-        Move forward along the path using an iterative loop (no recursion).
-        Guards against zero-length infrastructure causing infinite loops.
-        """
-        # Hard guard to prevent infinite loops in a single tick
         max_hops = 2000
         hops = 0
-
         remaining = distance
 
         while remaining > 0:
             hops += 1
             if hops > max_hops:
-                # Prevent lock-up; stop the vehicle for this tick
-                self.location_offset = min(self.location_offset, self.location.length)
                 return
 
             self.location_index += 1
-
-            # End of path safety
             if self.location_index >= len(self.path_ids):
                 return
 
-            next_id = self.path_ids.iloc[self.location_index]
+            next_id = self.path_ids[self.location_index]
             next_infra = self.model.schedule._agents[next_id]
 
-            # Arrive at Sink
-            if isinstance(next_infra, Sink):
+            if isinstance(next_infra, Sink): #Check whether vehicle reaches a sink, remove if true
                 self.arrive_at_next(next_infra, 0)
                 next_infra.remove(self)
                 return
 
-            # Bridge delay (only if bridge is broken)
-            if isinstance(next_infra, Bridge) and next_infra.is_broken:
+            if isinstance(next_infra, Bridge) and next_infra.is_broken: #Check if vehicle reaches a bridge, delay if bridge is broken
                 delay = self.get_delay_time_for_broken_bridge(next_infra)
                 if delay > 0:
                     next_infra.total_delay_caused += delay
@@ -211,27 +195,27 @@ class Vehicle(Agent):
                     self.state = Vehicle.State.WAIT
                     return
 
-            # Guard: if length is zero (or missing), treat as tiny step forward
             seg_len = float(getattr(next_infra, "length", 0) or 0)
+
             if seg_len <= 0:
-                # move onto it but don't consume distance; consume a tiny epsilon to progress
                 self.arrive_at_next(next_infra, 0)
                 remaining -= 1e-6
                 continue
 
+            travelled = min(remaining, seg_len)
+            self.distance_travelled += travelled
+
             if remaining < seg_len:
-                # Stop within this infra
                 self.arrive_at_next(next_infra, remaining)
-                remaining = 0
+                return
             else:
-                # Traverse entire infra and continue
                 self.arrive_at_next(next_infra, seg_len)
                 remaining -= seg_len
 
     def get_delay_time_for_broken_bridge(self, bridge) -> int:
         L = float(getattr(bridge, "length", 0) or 0)
 
-        if L > 200:
+        if L > 200: #Bridge delays
             return int(self.model.random.triangular(60, 120, 240))
         elif 50 <= L <= 200:
             return int(self.model.random.randint(45, 90))

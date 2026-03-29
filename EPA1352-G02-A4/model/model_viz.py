@@ -59,15 +59,11 @@ def agent_portrayal(agent):
 
 # Breakdown probabilities per scenario
 scenarios = {
-    "S0": {"A": 0.0,  "B": 0.0,  "C": 0.0,  "D": 0.0},
-    "S1": {"A": 0.0,  "B": 0.0,  "C": 0.0,  "D": 5.0},
-    "S2": {"A": 0.0,  "B": 0.0,  "C": 0.0,  "D": 10.0},
-    "S3": {"A": 0.0,  "B": 0.0,  "C": 5.0,  "D": 10.0},
-    "S4": {"A": 0.0,  "B": 0.0,  "C": 10.0, "D": 20.0},
-    "S5": {"A": 0.0,  "B": 5.0,  "C": 10.0, "D": 20.0},
-    "S6": {"A": 0.0,  "B": 10.0, "C": 20.0, "D": 40.0},
-    "S7": {"A": 5.0,  "B": 10.0, "C": 20.0, "D": 40.0},
-    "S8": {"A": 10.0, "B": 20.0, "C": 40.0, "D": 80.0},
+    "S0": {"A": 0.0, "B": 0.0, "C": 0.0,  "D": 0.0},
+    "S1": {"A": 0.0, "B": 0.0, "C": 0.0,  "D": 5.0},
+    "S2": {"A": 0.0, "B": 0.0, "C": 5.0,  "D": 10.0},
+    "S3": {"A": 0.0, "B": 5.0, "C": 10.0, "D": 20.0},
+    "S4": {"A": 5.0, "B": 10.0, "C": 20.0, "D": 40.0},
 }
 
 canvas_width = 800
@@ -76,16 +72,16 @@ canvas_height = 800
 space = SimpleCanvas(agent_portrayal, canvas_width, canvas_height)
 
 # Variables
-scenario_to_visualise = "S1"
+scenario_to_visualise = "S0"
 seed = 1234567
-roads_to_include = ["N1"] #model can later be expanded by including more roads
-two_directional = False
+roads_to_include = ["N1", "N2"] #model can later be expanded by including more roads
+two_directional = True
 bridge_breakdown_probs = scenarios[scenario_to_visualise]
 
 server = ModularServer(
     BangladeshModel,
     [space],
-    "Transport Model",
+    "Transport Model Demo",
     {"seed": seed,
      "roads_to_include": roads_to_include,
      "two_directional": two_directional,
