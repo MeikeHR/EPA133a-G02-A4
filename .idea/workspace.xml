@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="" />
+    <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Vulnerability scoring.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Vulnerability scoring.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="1058" />
+    <option name="cachedIndexableFilesCount" value="1057" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
