@@ -19,7 +19,7 @@ roads_to_include = ["N1", "N2"] #Use roads N1 and N2
 
 def run_all_scenarios():
     current_dir = Path(__file__).resolve().parent
-    results_dir = current_dir / "results"
+    results_dir = current_dir / "results simulation"
     results_dir.mkdir(exist_ok=True)
 
     #extract the breakdown probabilities
@@ -65,7 +65,7 @@ def run_all_scenarios():
             df_all = pd.concat(all_replications, ignore_index=True)
         else:
             df_all = pd.DataFrame()
-        #make a csv per scenario for trip results
+        #make a csv per scenario for trip results simulation
         out_path = results_dir / f"{scenario_name}.csv"
         df_all.to_csv(out_path, index=False)
         #make a csv per scenario for bridges
