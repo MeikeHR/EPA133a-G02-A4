@@ -6,8 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/img/N1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/img/N1N2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/img/demo-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/img/demo-2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/img/demo-3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/img/demo-4.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis 2.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis 2.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis 2.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis 2.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/htmls/Data Analysis 2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/htmls/Vulnerability scoring.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
