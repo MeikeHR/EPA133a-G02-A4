@@ -108,7 +108,7 @@ class BangladeshModel(Model):
         return long_roads
 
     def generate_model(self):
-        roads_enriched = pd.read_csv("../data/roads_after_dataanalysis.csv")
+        roads_enriched = pd.read_csv("../data/new_data/roads_after_dataanalysis.csv")
 
         #automatically find side roads > 25km as a backup
         long_side_roads = self.get_long_side_roads(roads_enriched, self.main_roads, 25000)
@@ -122,7 +122,7 @@ class BangladeshModel(Model):
 
         roads_after_preprocessing = preprocess_data(roads_enriched, self.roads_to_include)
         # df_final = preprocess_data(roads_enriched, bridge_info, self.roads_to_include)
-        roads_after_preprocessing.to_csv(DATA_DIR / "roads_after_preprocessing.csv", index=False)
+        roads_after_preprocessing.to_csv(DATA_DIR / "new_data/roads_after_preprocessing.csv", index=False)
 
         print("Bridge lengths (first 10):")
 
