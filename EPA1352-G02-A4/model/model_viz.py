@@ -59,11 +59,11 @@ def agent_portrayal(agent):
 
 # Breakdown probabilities per scenario
 scenarios = {
-    "S0": {"A": 0.0, "B": 0.0, "C": 0.0,  "D": 0.0},
-    "S1": {"A": 0.0, "B": 0.0, "C": 0.0,  "D": 5.0},
-    "S2": {"A": 0.0, "B": 0.0, "C": 5.0,  "D": 10.0},
-    "S3": {"A": 0.0, "B": 5.0, "C": 10.0, "D": 20.0},
-    "S4": {"A": 5.0, "B": 10.0, "C": 20.0, "D": 40.0},
+    "S0": {"Low": 0.0, "Medium-Low": 0.0, "Medium-High": 0.0,  "High": 0.0},
+    "S1": {"Low": 0.0, "Medium-Low": 0.0, "Medium-High": 0.0,  "High": 5.0},
+    "S2": {"Low": 0.0, "Medium-Low": 0.0, "Medium-High": 5.0,  "High": 10.0},
+    "S3": {"Low": 0.0, "Medium-Low": 5.0, "Medium-High": 10.0, "High": 20.0},
+    "S4": {"Low": 5.0, "Medium-Low": 10.0,"Medium-High": 20.0, "High": 40.0},
 }
 
 canvas_width = 800

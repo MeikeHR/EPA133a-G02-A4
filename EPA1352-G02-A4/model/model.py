@@ -79,7 +79,8 @@ class BangladeshModel(Model):
         self.sources = []
         self.sinks = []
         self.trip_records = []
-
+        self.sink_criticality_weights = {}
+        self.road_generation_freq = {}
         self.generate_model()
 
     def get_long_side_roads(self, raw_df, main_roads, min_length_m=25000):
@@ -123,6 +124,35 @@ class BangladeshModel(Model):
         roads_after_preprocessing = preprocess_data(roads_enriched, self.roads_to_include)
         # df_final = preprocess_data(roads_enriched, bridge_info, self.roads_to_include)
         roads_after_preprocessing.to_csv(DATA_DIR / "new_data/roads_after_preprocessing.csv", index=False)
+
+        # Compute mean criticality per road, assign generation frequency by tertile
+        road_criticality = (
+            roads_after_preprocessing.groupby("road")["criticality_score"]
+            .mean()
+            .fillna(0)
+        )
+        low_thresh = road_criticality.quantile(0.33)
+        high_thresh = road_criticality.quantile(0.67)
+
+        def get_generation_freq(score):
+            if score >= high_thresh:
+                return 3  # high criticality: most trucks generated
+            elif score >= low_thresh:
+                return 6  # medium criticality
+            else:
+                return 12  # low criticality: fewest trucks generated
+
+        self.road_generation_freq = {
+            road: get_generation_freq(score)
+            for road, score in road_criticality.items()
+        }
+
+        for road in sorted(self.roads_to_include):
+            freq = self.road_generation_freq.get(road, 12)
+            print(f"  Road {road}: criticality={road_criticality.get(road, 0):.0f}, generation_freq={freq}")
+
+        # Store criticality weight per sink for weighted destination selection for the new routing
+        self.sink_criticality_weights = {}
 
         print("Bridge lengths (first 10):")
 
@@ -190,19 +220,29 @@ class BangladeshModel(Model):
             if m_type == "Bridge":
                 agent = Bridge(
                     rid, self, row["length"], row["name"],
-                    road_name, row.get("condition", "Unknown")
+                    road_name, row.get("condition", "Unknown"),
+                    row.get("vulnerability_score", 0.0)  #used to determine breakdown probability
                 )
             elif is_start or is_end:
-                agent = SourceSink(rid, self, row["length"], row["name"], road_name)
+                freq = self.road_generation_freq.get(road_name, 12)
+                agent = SourceSink(rid, self, row["length"], row["name"], road_name, generation_frequency=freq)  # frequency derived from road criticality
 
                 if not self.two_directional:
                     if is_end:
                         self.sources.append(rid)
                     if is_start:
                         self.sinks.append(rid)
+                        #Store criticality weight for this sink
+                        self.sink_criticality_weights[rid] = max(
+                            road_criticality.get(road_name, 0), 1 #The one ensures that roads with 0 criticality still have a non-zero weight
+                        )
                 else:
                     self.sources.append(rid)
                     self.sinks.append(rid)
+                    #Store criticality weight for this sink
+                    self.sink_criticality_weights[rid] = max(
+                        road_criticality.get(road_name, 0), 1
+                    )
             else:
                 agent = Link(rid, self, row["length"], row["name"], road_name)
 
@@ -245,7 +285,10 @@ class BangladeshModel(Model):
         available_sinks = [s for s in self.sinks if s != source_id]
         if not available_sinks:
             return None
-        sink_id = self.random.choice(available_sinks)
+
+        # Weight each sink by the criticality of its road
+        weights = [self.sink_criticality_weights.get(s, 1) for s in available_sinks]
+        sink_id = self.random.choices(available_sinks, weights=weights, k=1)[0]
 
         # Check path_ids_dict to see if path already exists
         if (source_id, sink_id) in self.path_ids_dict:

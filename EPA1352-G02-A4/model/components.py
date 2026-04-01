@@ -12,6 +12,7 @@ class Infra(Agent):
         self.name = name
         self.road_name = road_name
         self.vehicle_count = 0
+        self.trucks_passed = 0  # cumulative count for criticality analysis
 
     def step(self):
         pass
@@ -23,20 +24,36 @@ class Infra(Agent):
 # Bridge class
 class Bridge(Infra):
     def __init__(self, unique_id, model, length=0,
-                 name='Unknown', road_name='Unknown', condition='Unknown'):
+                 name='Unknown', road_name='Unknown', condition='Unknown',
+                 vulnerability_score=0.0):
         super().__init__(unique_id, model, length, name, road_name)
 
         self.condition = condition if pd.notnull(condition) else 'Unknown'
-        self.total_delay_caused = 0 #Delay counter
-        self.breakdown_count = 0 #Breakdown counter
+        self.vulnerability_score = vulnerability_score #Storing vulnerability score
+        self.total_delay_caused = 0 #delay counter
+        self.breakdown_count = 0 # Breakdown counter
+
+
+        # Map vulnerability score to level, then look up breakdown probability
+        vuln_level = self._get_vulnerability_level(vulnerability_score)
 
         # Probability is modelled as a chance during the total model run
-        p = self.model.bridge_breakdown_probs.get(self.condition, 0.0) / 100
+        p = self.model.bridge_breakdown_probs.get(vuln_level, 0.0) / 100
         if self.model.random.random() < p:
             self.is_broken = True
             self.breakdown_count = 1
         else:
             self.is_broken = False
+
+    def _get_vulnerability_level(self, score):
+        # Translate vulnerability score to discrete level
+        if 0 <= score <= 2:
+            return 'Low'
+        elif score <= 4:
+            return 'Medium-Low'
+        elif score <= 6:
+            return 'Medium-High'
+        return 'High'
 
     def step(self):
         pass
@@ -60,11 +77,14 @@ class Sink(Infra):
         #Trips are stored here
         self.model.trip_records.append({
             "truck_id": vehicle.unique_id,
+            "source_id": vehicle.generated_by.unique_id,  #we added this
+            "source_road": vehicle.generated_by.road_name,  # for road-level aggregation
             "generated_at_step": vehicle.generated_at_step,
             "removed_at_step": vehicle.removed_at_step,
             "travel_time_min": travel_time,
             "travel_distance_m": vehicle.distance_travelled,
-            "sink_id": self.unique_id
+            "sink_id": self.unique_id,
+            "sink_road": self.road_name  # for road-level aggregation
         })
 
         self.vehicle_count -= 1
@@ -75,11 +95,12 @@ class Sink(Infra):
 #In this part the Source class is created
 class Source(Infra):
     truck_counter = 0
-    generation_frequency = 5 #every 5 steps
 
+    # generation_frequency removed as a class attribute, now per LRP based on road criticality
     def __init__(self, unique_id, model, length=0,
-                 name='Unknown', road_name='Unknown'):
+                 name='Unknown', road_name='Unknown', generation_frequency=10): #default is set to every 10 steps
         super().__init__(unique_id, model, length, name, road_name)
+        self.generation_frequency = generation_frequency
         self.vehicle_generated_flag = False
 
     def step(self):
@@ -230,4 +251,5 @@ class Vehicle(Agent):
         self.location = next_infra
         self.location_offset = location_offset
         self.location.vehicle_count += 1
+        self.location.trucks_passed += 1  # track cumulative traffic per segment
         self.model.space.move_agent(self, next_infra.pos)

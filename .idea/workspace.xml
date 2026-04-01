@@ -5,10 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="Merge fix">
+      <change beforePath="$PROJECT_DIR$/.idea/EPA133a-G02-A4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EPA133a-G02-A4.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/roads_after_dataanalysis.csv" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/data/temporary data/roads_after_dataanalysis.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/components.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/components.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_run.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_viz.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_viz.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,8 +49,24 @@
   }
 }</component>
   <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" />
+      <option name="programPath" />
+      <option name="arguments" />
+      <option name="workingDirectory" />
+      <envs />
+    </McpServerCommand>
+    <McpServerCommand sourceId="UserConfigurationSource">
+      <option name="allowedToolsNames" />
+      <option name="enabled" value="true" />
+      <option name="name" />
+      <option name="programPath" />
+      <option name="arguments" />
+      <option name="workingDirectory" />
+      <envs />
+    </McpServerCommand>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
@@ -117,7 +136,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -141,7 +159,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EPA1352-G02-A4/model/model_run.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -164,7 +181,6 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EPA1352-G02-A4/model A3/model_viz.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -188,7 +204,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/EPA1352-G02-A4/model/model_viz.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
