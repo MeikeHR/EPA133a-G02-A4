@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/data/roads_enriched.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +95,7 @@
       <recent name="$PROJECT_DIR$/EPA1352-G02-A4/data" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.model_run A4">
+  <component name="RunManager" selected="Python.model_viz A4">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="EPA133a-G02-A4" />
       <option name="ENV_FILES" value="" />
