@@ -108,13 +108,13 @@ class BangladeshModel(Model):
         return long_roads
 
     def generate_model(self):
-        roads_enriched = pd.read_csv("../data/roads_enriched.csv")
+        roads_enriched = pd.read_csv("../data/roads_after_dataanalysis.csv")
 
         #automatically find side roads > 25km as a backup
         long_side_roads = self.get_long_side_roads(roads_enriched, self.main_roads, 25000)
         self.roads_to_include = list(set(self.main_roads + long_side_roads))
 
-        #print included roads and their lengths
+        #print included roads and their lengths (now N1, N2, and sideroads longer than 25km)
         for road in sorted(self.roads_to_include):
             segments = roads_enriched[roads_enriched["road"] == road]
             length_km = (segments["chainage"].max() - segments["chainage"].min())
