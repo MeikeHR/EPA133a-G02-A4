@@ -22,15 +22,13 @@ def run_all_scenarios():
     results_dir.mkdir(exist_ok=True)
 
     #extract the breakdown probabilities
-    for scenario_name, bridge_breakdown_probs in {"S0": scenarios["S0"]}.items(): #sanity-check
-    #for scenario_name, bridge_breakdown_probs in scenarios.items():
+    for scenario_name, bridge_breakdown_probs in scenarios.items():
         print(f"\n=== Running {scenario_name} ===")
 
         all_replications = []
         bridge_delays_scenario = []
 
-        for replication in range(1): #sanity-check
-        #for replication in range(10):
+        for replication in range(10):
             model = BangladeshModel(
                 seed=seed + replication, #make the seed change every replication
                 bridge_breakdown_probs=bridge_breakdown_probs,
