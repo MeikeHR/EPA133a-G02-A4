@@ -34,88 +34,8 @@ def extract_road_name(name: str):
 
 
 #Our data preprocessing
-def preprocess_data(raw_df, bridge_info, roads_to_include):
-    """
-    Returns:
-    - df_final: prepared dataframe for model build.
-
-    Includes:
-    - id creation
-    - length computation from chainage
-    - bridge_info aggregation + merge on LRPName
-    - bridge length overwrite (BMMS)
-    - filter to selected roads
-    - helper columns
-    """
-    raw_df = raw_df.copy()
-    bridge_info = bridge_info.copy()
-
-    #set id in df
-    raw_df["id"] = range(len(raw_df))
-
-    # length = abs(diff(chainage)) * 1000 (km -> m)
-    raw_df["length"] = (
-        raw_df.groupby("road")["chainage"]
-        .diff()
-        .abs()
-        .fillna(0) * 1000
-    )
-
-    # Clean types
-    raw_df["type_simple"] = raw_df["type"].apply(
-        lambda x: "Bridge" if isinstance(x, str) and "bridge" in x.lower()
-        else str(x).split(" / ")[0].split("%")[0]
-    )
-
-    # Make sure strings are consistent
-    raw_df["road"] = raw_df["road"].astype(str).str.strip()
-    raw_df["lrp"] = raw_df["lrp"].astype(str).str.strip()
-    raw_df["name"] = raw_df["name"].astype(str).fillna("").str.strip()
-
-    # Clean aggregate bridges
-    bridge_info.columns = bridge_info.columns.str.strip()
-    bridge_info["LRPName"] = bridge_info["LRPName"].astype(str).str.strip()
-
-    def aggregate_bridge_group(group: pd.DataFrame) -> pd.Series:
-        names_str = " ".join(group["name"].dropna().astype(str).tolist()).upper()
-        is_lr_pair = ("(L)" in names_str or " L " in names_str) and ("(R)" in names_str or " R " in names_str)
-
-        if is_lr_pair:
-            final_length = group["length"].median()
-        else:
-            final_length = group["length"].mean()
-
-        return pd.Series({
-            "length": final_length,
-            "condition": group["condition"].max(),  # worst condition (D > A)
-            "name": group["name"].iloc[0]
-        })
-
-    bridge_info_clean = (
-        bridge_info.groupby("LRPName", dropna=False)
-        .apply(aggregate_bridge_group)
-        .reset_index()
-    )
-    bridge_info_clean = bridge_info_clean.rename(columns={"length": "length_bmms"})
-
-    # BMMS merge to roads df
-    df = raw_df.merge(
-        bridge_info_clean,
-        left_on="lrp",
-        right_on="LRPName",
-        how="left",
-        suffixes=("", "_bmms")
-    )
-
-    # Bridges attributes
-    mask_bridge = df["type_simple"] == "Bridge"
-    mask_has_bmms_len = df["length_bmms"].notna()
-
-    df.loc[mask_bridge & mask_has_bmms_len, "length"] = df.loc[mask_bridge & mask_has_bmms_len, "length_bmms"]
-
-    if "condition_bmms" in df.columns:
-        df.loc[mask_bridge, "condition"] = df.loc[mask_bridge, "condition_bmms"]
-    df.loc[mask_bridge, "condition"] = df.loc[mask_bridge, "condition"].fillna("Unknown")
+def preprocess_data(df, roads_to_include):
+    df = df.copy()
 
     # Filter to selected roads
     if roads_to_include is not None:
@@ -124,15 +44,13 @@ def preprocess_data(raw_df, bridge_info, roads_to_include):
         if df.empty:
             raise ValueError(f"No data found for roads: {roads_to_include}")
 
+    # These two columns are not in roads_enriched yet
     df["target_road"] = df["name"].apply(extract_road_name)
     df["is_junction"] = df["type_simple"].apply(
         lambda t: isinstance(t, str) and (t == "CrossRoad" or t.startswith("SideRoad"))
     )
 
-    # Sort by road and chainage
-    df_final = df.sort_values(by=["road", "chainage"], ascending=[True, True]).reset_index(drop=True)
-
-    return df_final
+    return df.sort_values(by=["road", "chainage"]).reset_index(drop=True)
 
 
 # Here our model starts
@@ -190,21 +108,21 @@ class BangladeshModel(Model):
         return long_roads
 
     def generate_model(self):
-        raw_df = pd.read_csv(DATA_DIR / "_roads3.csv")
-        bridge_info = pd.read_excel(DATA_DIR / "BMMS_overview.xlsx")
+        roads_enriched = pd.read_csv("../data/roads_enriched.csv")
 
         #automatically find side roads > 25km as a backup
-        long_side_roads = self.get_long_side_roads(raw_df, self.main_roads, 25000)
+        long_side_roads = self.get_long_side_roads(roads_enriched, self.main_roads, 25000)
         self.roads_to_include = list(set(self.main_roads + long_side_roads))
 
         #print included roads and their lengths
         for road in sorted(self.roads_to_include):
-            segments = raw_df[raw_df["road"] == road]
+            segments = roads_enriched[roads_enriched["road"] == road]
             length_km = (segments["chainage"].max() - segments["chainage"].min())
             print(f"Including road {road}: {length_km:.1f} km")
 
-        df_final = preprocess_data(raw_df, bridge_info, self.roads_to_include)
-        df_final.to_csv(DATA_DIR / "preprocessed_roads.csv", index=False)
+        roads_after_preprocessing = preprocess_data(roads_enriched, self.roads_to_include)
+        # df_final = preprocess_data(roads_enriched, bridge_info, self.roads_to_include)
+        roads_after_preprocessing.to_csv(DATA_DIR / "roads_after_preprocessing.csv", index=False)
 
         print("Bridge lengths (first 10):")
 
@@ -215,7 +133,7 @@ class BangladeshModel(Model):
         road_endpoints = {}
 
         for road in self.roads_to_include:
-            df_road = df_final[df_final["road"] == road].sort_values("chainage").copy()
+            df_road = roads_after_preprocessing[roads_after_preprocessing["road"] == road].sort_values("chainage").copy()
             if df_road.empty:
                 continue
 
