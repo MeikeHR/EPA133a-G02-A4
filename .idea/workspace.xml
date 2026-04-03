@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="Model aangepast en testrun">
+    <list default="true" id="bde56d4d-a22f-4c23-a857-a8e72ae2f947" name="Changes" comment="resultaten">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_run.py" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/model_run.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/results simulation/S0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/results simulation/S0.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/model/results simulation/bridges_S0.csv" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/model/results simulation/bridges_S0.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/EPA1352-G02-A4/notebook/Data Analysis.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -255,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775082303973</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="resultaten">
+      <option name="closed" value="true" />
+      <created>1775084515927</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1775084515927</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +270,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Merge fix" />
     <MESSAGE value="Model aangepast en testrun" />
-    <option name="LAST_COMMIT_MESSAGE" value="Model aangepast en testrun" />
+    <MESSAGE value="resultaten" />
+    <option name="LAST_COMMIT_MESSAGE" value="resultaten" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EPA133a_G02_A4$model_run.coverage" NAME="model_run Coverage Results" MODIFIED="1774434993358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/EPA1352-G02-A4/model" />
